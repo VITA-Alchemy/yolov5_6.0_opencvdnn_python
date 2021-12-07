@@ -1,5 +1,10 @@
 # yolov5_6.0_opencvdnn_python
-基于opencv与numpy改写ultralytics/yolov5 v6.0 opencv推理代码，无需依赖pytorch。
+基于numpy改写ultralytics/yolov5 v6.0 opencv推理代码，无需依赖pytorch;前处理后处理使用numpy代替了pytroch。
+
+# Environment
+```bash
+opencv-python >= 4.5.4
+```
 
 # RUN
 ```bash

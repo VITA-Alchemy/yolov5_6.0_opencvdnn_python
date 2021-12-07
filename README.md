@@ -11,6 +11,8 @@ opencv-python >= 4.5.4
 git clone -b v6.0 https://github.com/ultralytics/yolov5.git
 download https://github.com/ultralytics/yolov5/releases/download/v6.0/yolov5s.pt
 python export.py --simplify --opset 12 
+#官方版测试
+python detect.py --weights ./yolov5s.onnx --dnn
 python main_dnn.py
 ```
 

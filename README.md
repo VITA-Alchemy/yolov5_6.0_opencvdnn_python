@@ -3,6 +3,7 @@
 
 # Environment
 ```bash
+pytorch >= 1.7.0    # export.py  need
 opencv-python >= 4.5.4
 ```
 

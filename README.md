@@ -5,6 +5,7 @@
 ```bash
 pytorch >= 1.7.0    # export.py  need
 opencv-python >= 4.5.4
+onnxruntime==1.5.2
 ```
 
 # RUN

@@ -141,7 +141,7 @@ if __name__ == "__main__":
     parser.add_argument('--nmsThreshold', default=0.5, type=float, help='nms iou thresh')
     args = parser.parse_args()
 
-    model = yolov5(args.net_type, confThreshold=args.confThreshold, nmsThreshold=args.nmsThreshold)
+    model = yolov5(args.net, confThreshold=args.confThreshold, nmsThreshold=args.nmsThreshold)
     srcimg = cv2.imread(args.imgpath)
     model.detect(srcimg)
 

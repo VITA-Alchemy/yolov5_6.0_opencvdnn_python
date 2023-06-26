@@ -100,9 +100,23 @@ class yolov5():
             #转为list 使用opencv自带nms
             boxes = boxes.tolist()
             scores = scores.tolist()
-            i = cv2.dnn.NMSBoxes(boxes, scores, self.confThreshold, self.nmsThreshold)
-            #i = torchvision.ops.nms(boxes, scores, iou_thres)  # NMS
-            output[xi] = x[i]
+            # i = cv2.dnn.NMSBoxes(boxes, scores, self.confThreshold, self.nmsThreshold)
+            # i = torchvision.ops.nms(boxes, scores, iou_thres)  # NMS
+            # output[xi] = x[i]
+              idxs = scores.argsort()  # 按分数 降序排列的索引 [N]
+            keep = []
+            while idxs.size > 0:  # 统计数组中元素的个数
+                max_score_index = idxs[-1]
+                max_score_box = boxes[max_score_index][None, :]
+                keep.append(max_score_index)
+                if idxs.size == 1:
+                    break
+                idxs = idxs[:-1]  # 将得分最大框 从索引中删除； 剩余索引对应的框 和 得分最大框 计算IoU；
+                other_boxes = boxes[idxs]  # [?, 4]
+                ious = self.box_iou(max_score_box, other_boxes)  # 一个框和其余框比较 1XM
+                idxs = idxs[ious[0] <= self.nmsThreshold]
+            keep = np.array(keep) 
+            output[xi] = x[keep]
         return output
 
     def detect(self, srcimg): 
